@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SECRET_KEY
+SECRET_KEY = 'secret'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sample',
     'rest_framework',
+    'corsheaders',
+    'sample',
+    'rest_framework_jwt',
+    'rest_framework_auth0',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -122,3 +125,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Django Rest Framework
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_auth0.authentication.Auth0JSONWebTokenAuthentication',
+    ),
+}
+
+AUTH0 = {
+    'AUTH0_CLIENT_ID':'client_id', #make sure it's the same string that aud attribute in your payload provides
+    'AUTH0_CLIENT_SECRET':'c2VjcmV0',
+    'AUTH0_ALGORITHM':'HS256', #default used in Auth0 apps
+    'JWT_AUTH_HEADER_PREFIX': 'JWT', #default prefix used by djangorestframework_jwt
+}
+
+CORS_ORIGIN_ALLOW_ALL = True #Just for test, don't use in production
