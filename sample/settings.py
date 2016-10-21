@@ -141,6 +141,7 @@ AUTH0 = {
     'AUTH0_CLIENT_SECRET':'c2VjcmV0',
     'AUTH0_ALGORITHM':'HS256', #default used in Auth0 apps
     'JWT_AUTH_HEADER_PREFIX': 'JWT', #default prefix used by djangorestframework_jwt
+    'AUTHORIZATION_EXTENSION': True,
 }
 
 CORS_ORIGIN_ALLOW_ALL = True #Just for test, don't use in production
