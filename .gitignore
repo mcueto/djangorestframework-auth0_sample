@@ -90,3 +90,6 @@ ENV/
 
 */settings_secret.py
 *.sqlite3
+
+#rest_framework_auth0
+rest_framework_auth0/
