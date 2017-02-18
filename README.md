@@ -22,7 +22,7 @@ How to run this
   >python manage.py runserver
 
 6. Use:
-  >curl -X POST -H 'Content-Type: application/json' -H 'Authorization:JWT  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImV4YW1wbGUiLCJlbWFpbCI6ImV4YW1wbGVAbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6Ly9vdXJkb21haW4uZXUuYXV0aDAuY29tLyIsInN1YiI6Imdvb2dsZS1vYXV0aDJ8MTIzNDU2Nzg5IiwiYXVkIjoiY2xpZW50X2lkIiwiZXhwIjoxNDgzMjI4Nzk5LCJpYXQiOjE0NzU2MjA2Njd9.frqteOpuH6Y3bu9fmbipXkW_YS_VUhwReecgYJoc0Ew' -d '{"text":"New todo"}' http://localhost:8000/api/todos/
+  >curl -X POST -H 'Content-Type: application/json' -H 'Authorization:JWT  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImV4YW1wbGUiLCJlbWFpbCI6ImV4YW1wbGVAbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6Ly9vdXJkb21haW4uZXUuYXV0aDAuY29tLyIsInN1YiI6Imdvb2dsZS1vYXV0aDJ8MTIzNDU2Nzg5IiwiYXVkIjoiY2xpZW50X2lkIiwiZXhwIjoxNTE0NzY0Nzk5LCJpYXQiOjE0NzU2MjA2Njd9.XD3m9YvwacrP_RGHkAvhGndDvprz6Tbe4YQzEelEI-o' -d '{"text":"New todo"}' http://localhost:8000/api/todos/
 
 Configure with your own credentials
 -----------
