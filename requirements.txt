@@ -2,7 +2,6 @@ cffi==1.5.2
 cryptography==1.2.3
 DateTime==4.0.1
 Django==1.10.2
-django-cors-headers==1.1.0
 django-filter==0.15.2
 django-pusherable==0.1.0
 djangorestframework==3.4.7
