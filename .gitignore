@@ -93,3 +93,7 @@ ENV/
 
 #rest_framework_auth0
 rest_framework_auth0/
+
+
+#rsa certificates files
+rsa_certificates/*
