@@ -138,7 +138,7 @@ REST_FRAMEWORK = {
 
 AUTH0 = {
     'CLIENTS': {
-        'web': {
+        'default': {
             'AUTH0_CLIENT_ID': 'client_id',  #make sure it's the same string that aud attribute in your payload provides
             'AUTH0_CLIENT_SECRET': 'c2VjcmV0',
             'CLIENT_SECRET_BASE64_ENCODED': True,
