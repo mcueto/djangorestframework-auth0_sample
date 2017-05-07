@@ -137,12 +137,16 @@ REST_FRAMEWORK = {
 }
 
 AUTH0 = {
-    'AUTH0_CLIENT_ID':'client_id', #make sure it's the same string that aud attribute in your payload provides
-    'AUTH0_CLIENT_SECRET':'c2VjcmV0',
-    'AUTH0_ALGORITHM':'HS256', #default used in Auth0 apps
-    'JWT_AUTH_HEADER_PREFIX': 'JWT', #default prefix used by djangorestframework_jwt
-    'AUTHORIZATION_EXTENSION': False, #default to False
-    'CLIENT_SECRET_BASE64_ENCODED': True #default to True, if you're Auth0 user since December, maybe you should set it to False
+    'CLIENTS': {
+        'web': {
+            'AUTH0_CLIENT_ID': 'client_id',  #make sure it's the same string that aud attribute in your payload provides
+            'AUTH0_CLIENT_SECRET': 'c2VjcmV0',
+            'CLIENT_SECRET_BASE64_ENCODED': True,
+        }
+    },
+    'AUTH0_ALGORITHM': 'HS256',  # default used in Auth0 apps
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',  # default prefix used by djangorestframework_jwt
+    'AUTHORIZATION_EXTENSION': False,  # default to False
 }
 
 CORS_ORIGIN_ALLOW_ALL = True #Just for test, don't use in production
