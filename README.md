@@ -34,15 +34,26 @@ If you want to use an RS256 keypairs to verify your users, you must to do:
 1. configure your Auth0 Client to use the RS256 algorithm
   ![alt text][img1]
 
-2. Download your Client private key(certificate as a PEM file)
+2. Download your Client certificate (as a PEM file)
   ![alt text][img2]
 
-3. Generate your Client public key
-  >openssl rsa -in <YOUR_CERTIFICATE.pem> -pubout -outform PEM -out <YOUR_CERTIFICATE>.pem.pub
+3. Move your certificate to the *rsa_certificates* folder (only to keep things in order)
 
-4. Move your public and private keys to the *rsa_certificates* folder (only to keep things in order)
+4. Add the following imports to your settings.py file
+```
+  from cryptography.x509 import load_pem_x509_certificate
 
-5. Configure your Client public and private keys in your Django App
+  from cryptography.hazmat.backends import default_backend
+```
+
+5. Read your certificate before assing it to the settings
+```
+  certificate_text = open("rsa_certificates/certificate.pem", 'rb').read()
+  certificate = load_pem_x509_certificate(certificate_text, default_backend())
+  default_publickey = certificate.public_key()
+```
+
+6. Configure your certificate in your Django App
 ```
   AUTH0 = {
       'CLIENTS': {
@@ -50,8 +61,7 @@ If you want to use an RS256 keypairs to verify your users, you must to do:
               'AUTH0_CLIENT_ID': 'client_id',  #make sure it's the same string that aud attribute in your payload provides
               ...
               'AUTH0_ALGORITHM': 'RS256',
-              'PUBLIC_KEY': open("rsa_certificates/<YOUR_CERTIFICATE>.pem.pub").read(),  # used only for RS256
-              'PRIVATE_KEY': open("rsa_certificates/<YOUR_CERTIFICATE>.pem").read()  # used only for RS256
+              'PUBLIC_KEY': default_publickey
           }
       },
       'JWT_AUTH_HEADER_PREFIX': 'JWT',  # default prefix used by djangorestframework_jwt
