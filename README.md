@@ -68,6 +68,8 @@ If you want to use an RS256 keypairs to verify your users, you must to do:
       'AUTHORIZATION_EXTENSION': False,  # default to False
   }
 ```
+***You can view a full configuration file for RS256 in the RS256 branch***
+
 
   When you set **RS256** as the algorithm, both **AUTH_CLIENT_SECRET** and **CLIENT_SECRET_BASE64_ENCODED** settings are ignored.
 
