@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 from .settings_secret import *
 import os
+from cryptography.x509 import load_pem_x509_certificate
+from cryptography.hazmat.backends import default_backend
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -136,13 +138,18 @@ REST_FRAMEWORK = {
     ),
 }
 
+certificate_text = open("rsa_certificates/certificate.pem", 'rb').read()
+certificate = load_pem_x509_certificate(certificate_text, default_backend())
+default_publickey = certificate.public_key()
+
 AUTH0 = {
     'CLIENTS': {
         'default': {
             'AUTH0_CLIENT_ID': 'client_id',  #make sure it's the same string that aud attribute in your payload provides
             'AUTH0_CLIENT_SECRET': 'c2VjcmV0',
             'CLIENT_SECRET_BASE64_ENCODED': True,
-            'AUTH0_ALGORITHM': 'HS256'
+            'AUTH0_ALGORITHM': 'RS256',
+            'PUBLIC_KEY': default_publickey,  # used only for RS256
         }
     },
     'JWT_AUTH_HEADER_PREFIX': 'JWT',  # default prefix used by djangorestframework_jwt
