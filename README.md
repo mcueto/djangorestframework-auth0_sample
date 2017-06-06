@@ -39,21 +39,23 @@ If you want to use an RS256 keypairs to verify your users, you must to do:
 
 3. Move your certificate to the *rsa_certificates* folder (only to keep things in order)
 
-4. Add the following imports to your settings.py file
+4. Append `cryptography` to `requirements.txt` and pip install it.
+
+5. Add the following imports to your settings.py file
 ```
   from cryptography.x509 import load_pem_x509_certificate
 
   from cryptography.hazmat.backends import default_backend
 ```
 
-5. Read your certificate before assing it to the settings
+6. Read your certificate before assing it to the settings
 ```
   certificate_text = open("rsa_certificates/certificate.pem", 'rb').read()
   certificate = load_pem_x509_certificate(certificate_text, default_backend())
   default_publickey = certificate.public_key()
 ```
 
-6. Configure your certificate in your Django App
+7. Configure your certificate in your Django App
 ```
   AUTH0 = {
       'CLIENTS': {
