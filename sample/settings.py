@@ -142,9 +142,9 @@ AUTH0 = {
             'AUTH0_CLIENT_ID': 'client_id',  #make sure it's the same string that aud attribute in your payload provides
             'AUTH0_CLIENT_SECRET': 'c2VjcmV0',
             'CLIENT_SECRET_BASE64_ENCODED': True,
+            'AUTH0_ALGORITHM': 'HS256',  # default used in Auth0 apps
         }
     },
-    'AUTH0_ALGORITHM': 'HS256',  # default used in Auth0 apps
     'JWT_AUTH_HEADER_PREFIX': 'JWT',  # default prefix used by djangorestframework_jwt
     'AUTHORIZATION_EXTENSION': False,  # default to False
 }
