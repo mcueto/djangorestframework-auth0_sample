@@ -9,7 +9,6 @@ gripcontrol>=2.4.2
 idna>=2.0
 inflection>=0.3.1
 ndg-httpsclient>=0.4.0
-psycopg2>=2.6.1
 pubcontrol>=2.2.7
 pusher>=1.2.3
 pyasn1>=0.1.9
