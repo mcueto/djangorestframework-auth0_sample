@@ -20,10 +20,15 @@ from django.conf.urls import (
 from django.contrib import admin
 from rest_framework import routers
 from .views import (
+    AllToDosViewSet,
     ToDoViewSet,
 )
 
 router = routers.DefaultRouter()
+router.register(
+    'all-todos',
+    AllToDosViewSet
+)
 router.register(r'todos', ToDoViewSet)
 
 urlpatterns = [
