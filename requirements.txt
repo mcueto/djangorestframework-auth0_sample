@@ -1,3 +1,4 @@
+python-dotenv==0.10.3
 cffi>=1.5.2
 DateTime>=4.0.1
 Django>=1.10.2
