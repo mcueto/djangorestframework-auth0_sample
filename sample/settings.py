@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
-from .settings_secret import *
 import os
 from dotenv import (
     load_dotenv,
