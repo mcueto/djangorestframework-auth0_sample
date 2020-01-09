@@ -1,7 +1,7 @@
 python-dotenv==0.10.3
 cffi>=1.5.2
 DateTime>=4.0.1
-Django>=1.10.2
+Django>=3.0.2
 django-filter>=0.15.2
 djangorestframework>=3.4.7
 djangorestframework-jsonapi>=2.0.1
