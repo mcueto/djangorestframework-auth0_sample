@@ -135,9 +135,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_auth0.authentication.Auth0JSONWebTokenAuthentication',
-    ),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework_auth0.authentication.Auth0JSOAuthorizationNWebTokenAuthentication',
+    # ),
 }
 
 AUTH0 = {
