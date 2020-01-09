@@ -21,6 +21,7 @@ from django.contrib import admin
 from rest_framework import routers
 from .views import (
     AllToDosViewSet,
+    SecureToDosViewSet,
     ToDoViewSet,
 )
 
@@ -28,6 +29,10 @@ router = routers.DefaultRouter()
 router.register(
     'all-todos',
     AllToDosViewSet
+)
+router.register(
+    'secure-todos',
+    SecureToDosViewSet
 )
 router.register(r'todos', ToDoViewSet)
 
