@@ -145,7 +145,7 @@ AUTH0 = {
         'default': {
             'AUTH0_CLIENT_ID': os.environ.get('AUTH0_CLIENT_ID'),  #make sure it's the same string that aud attribute in your payload provides
             'AUTH0_CLIENT_SECRET': os.environ.get('AUTH0_CLIENT_SECRET'),
-            'CLIENT_SECRET_BASE64_ENCODED': True,
+            'CLIENT_SECRET_BASE64_ENCODED': eval(os.environ.get('AUTH0_CLIENT_SECRET_BASE64_ENCODED', 'False')),
             'AUTH0_ALGORITHM': 'HS256',  # default used in Auth0 apps
         }
     },
