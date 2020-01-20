@@ -1,10 +1,24 @@
-from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
-from .models import ToDo
-from .serializers import ToDoSerializer
-from rest_framework_auth0.authentication import Auth0JSONWebTokenAuthentication
-from rest_framework_auth0.permissions import HasAdminRole
-from rest_framework_auth0.views import GroupsQuerysetFilterMixin
+from rest_framework import (
+    viewsets,
+)
+from rest_framework.permissions import (
+    IsAuthenticated,
+)
+from rest_framework_auth0.authentication import (
+    Auth0JSONWebTokenAuthentication,
+)
+from rest_framework_auth0.permissions import (
+    HasAdminRole,
+)
+from rest_framework_auth0.views import (
+    GroupsQuerysetFilterMixin,
+)
+from .models import (
+    ToDo,
+)
+from .serializers import (
+    ToDoSerializer,
+)
 
 
 class AllToDosViewSet(viewsets.ModelViewSet):
