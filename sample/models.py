@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 
+
 class ToDo(models.Model):
     text = models.TextField()
     done = models.BooleanField(
