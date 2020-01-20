@@ -13,6 +13,12 @@ class ToDo(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True
     )
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='todos',
+        null=True
+    )
 
     def __str__(self):
         return self.text
