@@ -150,6 +150,8 @@ AUTH0 = {
             'AUTH0_ALGORITHM': 'HS256',  # default used in Auth0 apps
         }
     },
+    'AUTH0_DOMAIN': os.environ.get('AUTH0_DOMAIN'),
+    'AUTH0_AUDIENCE': os.environ.get('AUTH0_AUDIENCE'),
     'JWT_AUTH_HEADER_PREFIX': 'JWT',  # default prefix used by djangorestframework_jwt
     'AUTHORIZATION_EXTENSION': False,  # default to False
 }
