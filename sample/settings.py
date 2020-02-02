@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import sys
 from dotenv import (
     load_dotenv,
 )
@@ -139,6 +140,46 @@ REST_FRAMEWORK = {
     # 'DEFAULT_AUTHENTICATION_CLASSES': (
     #     'rest_framework_auth0.authentication.Auth0JSOAuthorizationNWebTokenAuthentication',
     # ),
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'standard': {
+            'format': "[{}] [%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] [%(funcName)s] %(message)s".format(str(os.environ['LOGGER_APPLICATION_NAME'])),
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': os.environ.get('LOG_LEVEL', 'INFO'),
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard',
+            'stream': sys.stdout
+        },
+        'syslog': {
+            'class': 'logging.handlers.SysLogHandler',
+            'formatter': 'standard',
+            'facility': 'user',
+            # uncomment next line if rsyslog works with unix socket only (UDP reception disabled)
+            # 'address': '/dev/log'
+        }
+    },
+    'loggers': {
+        # Logger must be called django
+        'django': {
+            'handlers': ['console'],
+        },
+        'django.request': {
+            'handlers': ['console'],
+        },
+        os.environ.get('LOGGER_APPLICATION_NAME'): {
+            'handlers': ['console', 'syslog'],
+            'level': os.environ.get('LOG_LEVEL', 'INFO'),
+            'propagate': True,
+        },
+    }
 }
 
 AUTH0 = {
