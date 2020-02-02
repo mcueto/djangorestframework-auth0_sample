@@ -196,6 +196,7 @@ AUTH0 = {
             'CLIENT_SECRET_BASE64_ENCODED': eval(os.environ.get('AUTH0_CLIENT_SECRET_BASE64_ENCODED', 'False')),
             'AUTH0_ALGORITHM': 'RS256',  # default used in Auth0 apps
             'PUBLIC_KEY': default_publickey,
+            'AUTH0_AUDIENCE': os.environ.get('AUTH0_AUDIENCE')
         }
     },
     'AUTH0_DOMAIN': os.environ.get('AUTH0_DOMAIN'),
