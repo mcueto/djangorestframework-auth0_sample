@@ -15,6 +15,12 @@ import sys
 from dotenv import (
     load_dotenv,
 )
+from cryptography.x509 import load_pem_x509_certificate
+from cryptography.hazmat.backends import default_backend
+
+certificate_text = open("rsa_certificates/certificate.pem", 'rb').read()
+certificate = load_pem_x509_certificate(certificate_text, default_backend())
+default_publickey = certificate.public_key()
 
 load_dotenv()
 
@@ -188,7 +194,8 @@ AUTH0 = {
             'AUTH0_CLIENT_ID': os.environ.get('AUTH0_CLIENT_ID'),  #make sure it's the same string that aud attribute in your payload provides
             'AUTH0_CLIENT_SECRET': os.environ.get('AUTH0_CLIENT_SECRET'),
             'CLIENT_SECRET_BASE64_ENCODED': eval(os.environ.get('AUTH0_CLIENT_SECRET_BASE64_ENCODED', 'False')),
-            'AUTH0_ALGORITHM': 'HS256',  # default used in Auth0 apps
+            'AUTH0_ALGORITHM': 'RS256',  # default used in Auth0 apps
+            'PUBLIC_KEY': default_publickey,
         }
     },
     'AUTH0_DOMAIN': os.environ.get('AUTH0_DOMAIN'),
