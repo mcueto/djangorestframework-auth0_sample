@@ -180,6 +180,11 @@ LOGGING = {
         'django.request': {
             'handlers': ['console'],
         },
+        'rest_framework_auth0': {
+            'handlers': ['console', 'syslog'],
+            'level': os.environ.get('LOG_LEVEL', 'INFO'),
+            'propagate': True,
+        },
         os.environ.get('LOGGER_APPLICATION_NAME'): {
             'handlers': ['console', 'syslog'],
             'level': os.environ.get('LOG_LEVEL', 'INFO'),
