@@ -193,16 +193,23 @@ AUTH0 = {
         'default': {
             'AUTH0_CLIENT_ID': os.environ.get('AUTH0_CLIENT_ID'),  #make sure it's the same string that aud attribute in your payload provides
             'AUTH0_CLIENT_SECRET': os.environ.get('AUTH0_CLIENT_SECRET'),
-            'CLIENT_SECRET_BASE64_ENCODED': eval(os.environ.get('AUTH0_CLIENT_SECRET_BASE64_ENCODED', 'False')),
+            'CLIENT_SECRET_BASE64_ENCODED': eval(
+                os.environ.get('AUTH0_CLIENT_SECRET_BASE64_ENCODED', 'False')
+            ),
+            'AUTH0_AUDIENCE': os.environ.get('AUTH0_AUDIENCE'),
             'AUTH0_ALGORITHM': 'RS256',  # default used in Auth0 apps
             'PUBLIC_KEY': default_publickey,
-            'AUTH0_AUDIENCE': os.environ.get('AUTH0_AUDIENCE')
         }
     },
-    'AUTH0_DOMAIN': os.environ.get('AUTH0_DOMAIN'),
-    'AUTH0_AUDIENCE': os.environ.get('AUTH0_AUDIENCE'),
-    'JWT_AUTH_HEADER_PREFIX': 'JWT',  # default prefix used by djangorestframework_jwt
-    'AUTHORIZATION_EXTENSION': False,  # default to False
+    # Optional
+    # 'AUTH_COOKIE_NAME': None,  # if you want to use cookie instead of header, set this setting
+    # 'AUTHORIZATION_EXTENSION': False,  # default to False
+    # 'USERNAME_FIELD': 'sub',
+    # 'CLIENT_CODE_HEADER': 'Client_Code',
+    # 'AUTH_HEADER_PREFIX': 'Bearer',  # default prefix used by Auth0 lock.js
+    # 'REPLACE_PIPE_FOR_DOTS_IN_USERNAME': True,
+    # 'GET_USERNAME_HANDLER':
+    # 'rest_framework_auth0.utils.get_username_from_payload',
 }
 
 CORS_ORIGIN_ALLOW_ALL = True #Just for test, don't use in production
