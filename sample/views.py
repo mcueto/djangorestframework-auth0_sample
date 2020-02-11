@@ -19,6 +19,9 @@ from .models import (
 from .serializers import (
     ToDoSerializer,
 )
+from .permissions import (
+    HasAdminGroupPermission,
+)
 
 
 class AllToDosViewSet(viewsets.ModelViewSet):
@@ -40,6 +43,18 @@ class SecureToDosViewSet(viewsets.ModelViewSet):
     serializer_class = ToDoSerializer
     authentication_classes = [Auth0JSONWebTokenAuthentication]
     permission_classes = [IsAuthenticated]
+
+
+class AdminToDosViewSet(viewsets.ModelViewSet):
+    """
+    AdminToDosViewSet.
+    Retrieve a list with all ToDo model instances only when the user is
+    authenticated and has admin group permissions.
+    """
+    queryset = ToDo.objects.all()
+    serializer_class = ToDoSerializer
+    authentication_classes = [Auth0JSONWebTokenAuthentication]
+    permission_classes = [HasAdminGroupPermission]
 
 
 class ToDoViewSet(GroupsQuerysetFilterMixin, viewsets.ModelViewSet):
