@@ -57,6 +57,37 @@ class AdminToDosViewSet(viewsets.ModelViewSet):
     permission_classes = [HasAdminGroupPermission]
 
 
+class MyOwnToDosViewSet(viewsets.ModelViewSet):
+    """
+    MyOwnToDosViewSet.
+    Retrieve a list with all ToDo model instances only to the user is
+    authenticated.
+    """
+    serializer_class = ToDoSerializer
+    authentication_classes = [Auth0JSONWebTokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        """
+        Get ToDos for the authenticated User.
+
+        This view should return a list of all the ToDos for the currently
+        authenticated user.
+        """
+        user = self.request.user
+
+        return ToDo.objects.filter(
+            user=user
+        )
+
+    # When a ToDo is created on this endpoint, associate the user so it can
+    # be filtered later
+    def perform_create(self, serializer):
+        serializer.save(
+            user=self.request.user
+        )
+
+
 class ToDoViewSet(GroupsQuerysetFilterMixin, viewsets.ModelViewSet):
     queryset = ToDo.objects.all()
     serializer_class = ToDoSerializer
