@@ -22,6 +22,7 @@ from rest_framework import routers
 from .views import (
     AllToDosViewSet,
     SecureToDosViewSet,
+    AdminToDosViewSet,
     ToDoViewSet,
 )
 
@@ -33,6 +34,10 @@ router.register(
 router.register(
     'secure-todos',
     SecureToDosViewSet
+)
+router.register(
+    'admin-todos',
+    AdminToDosViewSet
 )
 router.register(r'todos', ToDoViewSet)
 
