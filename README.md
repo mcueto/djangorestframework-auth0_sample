@@ -65,24 +65,30 @@ If you want to use an RS256 keypairs to verify your users, you must to do:
 ```
   certificate_text = open("rsa_certificates/certificate.pem", 'rb').read()
   certificate = load_pem_x509_certificate(certificate_text, default_backend())
-  default_publickey = certificate.public_key()
+  certificate_publickey = certificate.public_key()
 ```
 
 7. Configure your certificate in your Django App
 ```
   AUTH0 = {
-      'CLIENTS': {
-          'web': {
-              'AUTH0_CLIENT_ID': 'client_id',  #make sure it's the same string that aud attribute in your payload provides
-              ...
-              'AUTH0_ALGORITHM': 'RS256',
-              'PUBLIC_KEY': default_publickey
+    'CLIENTS': {
+          'default': {
+              'AUTH0_CLIENT_ID': '<AUTH0_CLIENT_ID>',
+              'AUTH0_AUDIENCE': 'AUTH0_AUDIENCE',
+              'AUTH0_ALGORITHM': 'RS256',  # default used in Auth0 apps
+              'PUBLIC_KEY': certificate_publickey,
           }
       },
-      'JWT_AUTH_HEADER_PREFIX': 'JWT',  # default prefix used by djangorestframework_jwt
-      'AUTHORIZATION_EXTENSION': False,  # default to False
+      'MANAGEMENT_API': {
+          'AUTH0_DOMAIN': '<AUTH0_DOMAIN>',
+          'AUTH0_CLIENT_ID': '<AUTH0_MANAGEMENT_API_CLIENT_ID>',
+          'AUTH0_CLIENT_SECRET': '<AUTH0_MANAGEMENT_API_CLIENT_SECRET>'
+      },
   }
 ```
+
+NOTE: for `MANAGEMENT_API` usage you need a `m2m client`configured in Auth0 with Authorization to use `Auth0 Management API` API
+
 ***You can view a full configuration file for RS256 in the RS256 branch***
 
 
