@@ -23,21 +23,32 @@ from .views import (
     AllToDosViewSet,
     SecureToDosViewSet,
     AdminToDosViewSet,
+    MyOwnToDosViewSet,
     ToDoViewSet,
 )
 
 router = routers.DefaultRouter()
+# All users
 router.register(
     'all-todos',
     AllToDosViewSet
 )
+# Only authenticated users
 router.register(
     'secure-todos',
     SecureToDosViewSet
 )
+# Authenticated users with group validation(similar to role o permission validation)
 router.register(
     'admin-todos',
     AdminToDosViewSet
+)
+# Authenticated user that can only see it's ToDos and when create a ToDo it's
+# automatically associated to it
+router.register(
+    'my-todos',
+    MyOwnToDosViewSet,
+    basename='myowntodos'
 )
 router.register(r'todos', ToDoViewSet)
 
