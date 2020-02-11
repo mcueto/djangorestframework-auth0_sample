@@ -20,7 +20,7 @@ from cryptography.hazmat.backends import default_backend
 
 certificate_text = open("rsa_certificates/certificate.pem", 'rb').read()
 certificate = load_pem_x509_certificate(certificate_text, default_backend())
-default_publickey = certificate.public_key()
+certificate_publickey = certificate.public_key()
 
 load_dotenv()
 
@@ -197,14 +197,15 @@ AUTH0 = {
     'CLIENTS': {
         'default': {
             'AUTH0_CLIENT_ID': os.environ.get('AUTH0_CLIENT_ID'),  #make sure it's the same string that aud attribute in your payload provides
-            'AUTH0_CLIENT_SECRET': os.environ.get('AUTH0_CLIENT_SECRET'),
-            'CLIENT_SECRET_BASE64_ENCODED': eval(
-                os.environ.get('AUTH0_CLIENT_SECRET_BASE64_ENCODED', 'False')
-            ),
             'AUTH0_AUDIENCE': os.environ.get('AUTH0_AUDIENCE'),
             'AUTH0_ALGORITHM': 'RS256',  # default used in Auth0 apps
-            'PUBLIC_KEY': default_publickey,
+            'PUBLIC_KEY': certificate_publickey,
         }
+    },
+    'MANAGEMENT_API': {
+        'AUTH0_DOMAIN': os.environ.get('AUTH0_DOMAIN'),
+        'AUTH0_CLIENT_ID': os.environ.get('AUTH0_MANAGEMENT_API_CLIENT_ID'),
+        'AUTH0_CLIENT_SECRET': os.environ.get('AUTH0_MANAGEMENT_API_CLIENT_SECRET')
     },
     # Optional
     # 'AUTH_COOKIE_NAME': None,  # if you want to use cookie instead of header, set this setting
@@ -217,4 +218,4 @@ AUTH0 = {
     # 'rest_framework_auth0.utils.get_username_from_payload',
 }
 
-CORS_ORIGIN_ALLOW_ALL = True #Just for test, don't use in production
+CORS_ORIGIN_ALLOW_ALL = True  #Just for test, don't use in production
